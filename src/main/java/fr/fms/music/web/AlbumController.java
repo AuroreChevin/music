@@ -62,6 +62,7 @@ public class AlbumController {
             log.error("problème lors de l'upload de l'image correspondant à l'album d'id : {}", id);
             return ResponseEntity.internalServerError().body(e.getCause());
         }
+        log.info("file upload ok {}",id);
         return ResponseEntity.ok().build();
     }
 }
