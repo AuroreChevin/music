@@ -1,6 +1,7 @@
 package fr.fms.music.business;
 
 import fr.fms.music.entities.Album;
+import fr.fms.music.entities.BandName;
 import fr.fms.music.entities.MusicalGenre;
 
 import java.util.List;
@@ -20,4 +21,8 @@ public interface Ibusiness {
     Optional readMusicalGenreById(Long id);
 
     List<Album> readAlbumByMusicalGenreId(Long id);
+
+    BandName saveBandName(BandName bandName);
+
+    List<Album> readAlbumByBandName(String keyword);
 }

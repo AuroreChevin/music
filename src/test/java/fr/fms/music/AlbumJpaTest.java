@@ -1,8 +1,10 @@
 package fr.fms.music;
 
 import fr.fms.music.entities.Album;
+import fr.fms.music.entities.BandName;
 import fr.fms.music.entities.MusicalGenre;
 import fr.fms.music.repositories.AlbumRepository;
+import fr.fms.music.repositories.BandNameRepository;
 import fr.fms.music.repositories.MusicalGenreRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +22,11 @@ public class AlbumJpaTest {
     AlbumRepository albumRepository;
     @Autowired
     MusicalGenreRepository musicalGenreRepository;
+    @Autowired
+    BandNameRepository bandNameRepository;
     @Test
     void should_find_all_albums(){
-       albumRepository.save(new Album(null, "babar", "personnage", 0, null, null));
+       albumRepository.save(new Album(null, "babar",  0, null, null, null));
         Iterable<Album> albums = albumRepository.findAll();
         assertThat(albums).isNotEmpty();
     }
@@ -35,7 +39,8 @@ public class AlbumJpaTest {
     @Test
     void should_add_album(){
         MusicalGenre anonymous = musicalGenreRepository.save(new MusicalGenre(null, "anonymous", null));
-        albumRepository.save(new Album(null, "incognito", "bidule", 1960, null, anonymous));
+        BandName bidule = bandNameRepository.save(new BandName(null, "bidule", "Moon", null));
+        albumRepository.save(new Album(null, "incognito", 1960, null, anonymous, bidule));
         Album album = albumRepository.findByAlbumNameContains("incognito").get(0);
         assertEquals("bidule", album.getBandName());
     }

@@ -14,10 +14,11 @@ public class Album implements Serializable {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String albumName;
-    private String bandName;
     private int releaseYear;
     private String photo;
     @ManyToOne
     MusicalGenre musicalGenre;
+    @ManyToOne
+    BandName bandName;
 
 }

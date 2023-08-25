@@ -1,8 +1,10 @@
 package fr.fms.music.business;
 
 import fr.fms.music.entities.Album;
+import fr.fms.music.entities.BandName;
 import fr.fms.music.entities.MusicalGenre;
 import fr.fms.music.repositories.AlbumRepository;
+import fr.fms.music.repositories.BandNameRepository;
 import fr.fms.music.repositories.MusicalGenreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,8 @@ public class IbusinessImpl implements Ibusiness{
     MusicalGenreRepository musicalGenreRepository;
     @Autowired
     AlbumRepository albumRepository;
+    @Autowired
+    BandNameRepository bandNameRepository;
     @Override
     public MusicalGenre saveMusicalGenre(MusicalGenre musicalGenre) {
         return musicalGenreRepository.save(musicalGenre);
@@ -33,7 +37,7 @@ public class IbusinessImpl implements Ibusiness{
 
     @Override
     public List<MusicalGenre> getAllMusicalGenres() {
-        return musicalGenreRepository.findAll();
+        return musicalGenreRepository.findAllByOrderByNameAsc();
     }
 
     @Override
@@ -49,6 +53,16 @@ public class IbusinessImpl implements Ibusiness{
     @Override
     public List<Album> readAlbumByMusicalGenreId(Long id) {
         return albumRepository.findByMusicalGenreId(id);
+    }
+
+    @Override
+    public BandName saveBandName(BandName bandName) {
+        return bandNameRepository.save(bandName);
+    }
+
+    @Override
+    public List<Album> readAlbumByBandName(String keyword) {
+        return albumRepository.findByBandNameNameContains(keyword);
     }
 
 }

@@ -38,6 +38,10 @@ public class AlbumController {
     public List<Album> getAllAlbumsByMusicalGenreId(@PathVariable("id") Long id ){
         return business.readAlbumByMusicalGenreId(id);
     }
+    @GetMapping("/albums/bandname/keyword={keyword}")
+    public List<Album> getAllAlbumsByBandName(@PathVariable("keyword") String keyword ){
+        return business.readAlbumByBandName(keyword);
+    }
     @GetMapping(path = "/photo/{id}", produces = MediaType.IMAGE_PNG_VALUE)
     public ResponseEntity<?> getPhotos(@PathVariable("id") Long id) throws IOException{
         byte[] file =null;
