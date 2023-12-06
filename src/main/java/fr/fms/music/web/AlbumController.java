@@ -2,9 +2,11 @@ package fr.fms.music.web;
 
 import fr.fms.music.business.IbusinessImpl;
 import fr.fms.music.entities.Album;
-import fr.fms.music.entities.MusicalGenre;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +18,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Map;
 
 
 @CrossOrigin(origins = "*")
@@ -25,10 +28,15 @@ import java.util.List;
 public class AlbumController {
     @Autowired
     IbusinessImpl business;
-    @GetMapping("/albums")
+   @GetMapping("/albums")
     public ResponseEntity<List<Album>> getAllAlbums(){
         List<Album> albums = business.getAllAlbums();
         return new ResponseEntity<List<Album>>(albums,HttpStatus.OK);
+    }
+    @GetMapping("/albums/paging")
+    public Page<Album>getAllAlbumsPagination(@RequestParam(defaultValue = "0")int page,
+                                                                     @RequestParam(defaultValue = "8") int size){
+        return business.getAllAlbumsPagination(page,size);
     }
     @GetMapping("/album/{id}")
     public Album getAlbumById(@PathVariable("id") Long id){

@@ -1,7 +1,6 @@
 package fr.fms.music.web;
 
 import fr.fms.music.business.IbusinessImpl;
-import fr.fms.music.entities.Album;
 import fr.fms.music.entities.MusicalGenre;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

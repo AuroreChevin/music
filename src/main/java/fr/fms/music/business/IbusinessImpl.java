@@ -7,6 +7,9 @@ import fr.fms.music.repositories.AlbumRepository;
 import fr.fms.music.repositories.BandNameRepository;
 import fr.fms.music.repositories.MusicalGenreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,6 +36,12 @@ public class IbusinessImpl implements Ibusiness{
     @Override
     public List<Album> getAllAlbums() {
         return albumRepository.findAllByOrderByAlbumNameAsc();
+    }
+
+    @Override
+    public Page<Album> getAllAlbumsPagination(int page, int size) {
+        Pageable paging = PageRequest.of(page, size);
+        return albumRepository.findAllByOrderByAlbumNameAsc(paging);
     }
 
     @Override
