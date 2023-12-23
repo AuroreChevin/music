@@ -5,8 +5,6 @@ import fr.fms.music.entities.Album;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -14,11 +12,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
-import java.util.Map;
 
 
 @CrossOrigin(origins = "*")
@@ -31,7 +27,7 @@ public class AlbumController {
    @GetMapping("/albums")
     public ResponseEntity<List<Album>> getAllAlbums(){
         List<Album> albums = business.getAllAlbums();
-        return new ResponseEntity<List<Album>>(albums,HttpStatus.OK);
+        return new ResponseEntity<>(albums, HttpStatus.OK);
     }
     @GetMapping("/albums/paging")
     public Page<Album>getAllAlbumsPagination(@RequestParam(defaultValue = "0")int page,
@@ -40,8 +36,9 @@ public class AlbumController {
     }
     @GetMapping("/album/{id}")
     public Album getAlbumById(@PathVariable("id") Long id){
-        return business.readAlbumById(id).get();
+        return business.readAlbumById(id);
     }
+
     @GetMapping("/albums/musicalgenres/{id}")
     public List<Album> getAllAlbumsByMusicalGenreId(@PathVariable("id") Long id ){
         return business.readAlbumByMusicalGenreId(id);
@@ -51,12 +48,12 @@ public class AlbumController {
         return business.readAlbumByBandName(keyword);
     }
     @GetMapping(path = "/photo/{id}", produces = MediaType.IMAGE_PNG_VALUE)
-    public ResponseEntity<?> getPhotos(@PathVariable("id") Long id) throws IOException{
-        byte[] file =null;
+    public ResponseEntity<?> getPhotos(@PathVariable("id") Long id) {
+        byte[] file;
         try {
-            Album album = business.readAlbumById(id).get();
+            Album album = business.readAlbumById(id);
             if (album.getPhoto()==null)album.setPhoto("unknown.png");
-            file = Files.readAllBytes(Paths.get(System.getProperty("user.home")+"/musical/images/"+album.getPhoto()));
+            file = Files.readAllBytes(Paths.get("D:/Logiciels/ProjectMusic/musical/images/"+album.getPhoto()));
         }catch (Exception e){
             log.error("problème lors du download de l'image correspondant à l'album d'id : {}", id);
             return ResponseEntity.internalServerError().body(e.getCause());
@@ -64,11 +61,11 @@ public class AlbumController {
         return ResponseEntity.ok().body(file);
     }
     @PostMapping(path="/photo/{id}")
-    public ResponseEntity<?> uploadPhoto(MultipartFile file, @PathVariable("id")Long id) throws IOException{
+    public ResponseEntity<?> uploadPhoto(MultipartFile file, @PathVariable("id")Long id) {
         try {
-            Album album = business.readAlbumById(id).get();
+            Album album = business.readAlbumById(id);
             album.setPhoto(file.getOriginalFilename());
-            Files.write(Paths.get(System.getProperty("user.home")+"/musical/images/"+album.getPhoto()),file.getBytes());
+            Files.write(Paths.get("D:/Logiciels/ProjectMusic/musical/images/"+album.getPhoto()),file.getBytes());
             business.saveAlbum(album);
         }catch (Exception e){
             log.error("problème lors de l'upload de l'image correspondant à l'album d'id : {}", id);

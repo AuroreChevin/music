@@ -18,7 +18,7 @@ public interface Ibusiness {
 
     List<MusicalGenre> getAllMusicalGenres();
 
-    Optional readAlbumById(Long id);
+    Album readAlbumById(Long id);
 
     Optional readMusicalGenreById(Long id);
 

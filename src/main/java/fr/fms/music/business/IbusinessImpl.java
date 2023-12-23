@@ -50,8 +50,9 @@ public class IbusinessImpl implements Ibusiness{
     }
 
     @Override
-    public Optional<Album> readAlbumById(Long id) {
-        return albumRepository.findById(id);
+    public Album readAlbumById(Long id){
+        Optional<Album> optional = albumRepository.findById(id);
+        return optional.isPresent() ? optional.get() : null;
     }
 
     @Override

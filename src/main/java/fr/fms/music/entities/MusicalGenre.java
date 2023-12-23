@@ -17,7 +17,7 @@ public class MusicalGenre implements Serializable {
     private Long id;
     private String name;
     @OneToMany(fetch = FetchType.EAGER)
-   @JsonIgnore
+    @JsonIgnore
     @JoinColumn(name = "musical_genre_id")
     private Collection<Album> albums;
 }
