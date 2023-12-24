@@ -24,16 +24,19 @@ import java.util.List;
 public class AlbumController {
     @Autowired
     IbusinessImpl business;
-   @GetMapping("/albums")
+
+    @GetMapping("/albums")
     public ResponseEntity<List<Album>> getAllAlbums(){
         List<Album> albums = business.getAllAlbums();
         return new ResponseEntity<>(albums, HttpStatus.OK);
     }
+
     @GetMapping("/albums/paging")
     public Page<Album>getAllAlbumsPagination(@RequestParam(defaultValue = "0")int page,
                                                                      @RequestParam(defaultValue = "8") int size){
         return business.getAllAlbumsPagination(page,size);
     }
+
     @GetMapping("/album/{id}")
     public Album getAlbumById(@PathVariable("id") Long id){
         return business.readAlbumById(id);
@@ -43,10 +46,12 @@ public class AlbumController {
     public List<Album> getAllAlbumsByMusicalGenreId(@PathVariable("id") Long id ){
         return business.readAlbumByMusicalGenreId(id);
     }
+
     @GetMapping("/albums/bandname/keyword={keyword}")
     public List<Album> getAllAlbumsByBandName(@PathVariable("keyword") String keyword ){
         return business.readAlbumByBandName(keyword);
     }
+
     @GetMapping(path = "/photo/{id}", produces = MediaType.IMAGE_PNG_VALUE)
     public ResponseEntity<?> getPhotos(@PathVariable("id") Long id) {
         byte[] file;
@@ -60,6 +65,7 @@ public class AlbumController {
         }
         return ResponseEntity.ok().body(file);
     }
+
     @PostMapping(path="/photo/{id}")
     public ResponseEntity<?> uploadPhoto(MultipartFile file, @PathVariable("id")Long id) {
         try {
