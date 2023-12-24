@@ -36,13 +36,6 @@ public class AlbumJpaTest {
         Iterable<MusicalGenre> musicalGenres = musicalGenreRepository.findAll();
         assertThat(musicalGenres).isNotEmpty();
     }
-    /*@Test
-    void should_add_album(){
-        MusicalGenre anonymous = musicalGenreRepository.save(new MusicalGenre(null, "anonymous", null));
-        BandName bidule = bandNameRepository.save(new BandName(null, "bidule", "Moon", null));
-        albumRepository.save(new Album(null, "incognito", 1960, null, anonymous, bidule));
-        Album album = albumRepository.findByAlbumNameContains("incognito").get(0);
-        assertEquals("bidule", album.getBandName());
-    }*/
+
 
 }
