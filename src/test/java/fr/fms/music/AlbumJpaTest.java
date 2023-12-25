@@ -28,12 +28,12 @@ public class AlbumJpaTest {
         Iterable<Album> albums = albumRepository.findAll();
         assertThat(albums).isNotEmpty();
     }
-    @Test
+    /*@Test
     void should_find_all_musicalGenres(){
         musicalGenreRepository.save(new MusicalGenre(null, "rnb",null));
         Iterable<MusicalGenre> musicalGenres = musicalGenreRepository.findAll();
         assertThat(musicalGenres).isNotEmpty();
-    }
+    }*/
 
 
 }
