@@ -16,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = Replace.NONE)
-public class AlbumJpaTest {
+class AlbumJpaTest {
     @Autowired
     AlbumRepository albumRepository;
     @Autowired
