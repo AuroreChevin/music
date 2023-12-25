@@ -1,7 +1,6 @@
 package fr.fms.music;
 
 import fr.fms.music.entities.Album;
-import fr.fms.music.entities.BandName;
 import fr.fms.music.entities.MusicalGenre;
 import fr.fms.music.repositories.AlbumRepository;
 import fr.fms.music.repositories.BandNameRepository;
@@ -13,7 +12,6 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = Replace.NONE)
