@@ -1,6 +1,5 @@
-package fr.fms.music.repositories;
-import fr.fms.music.entities.Album;
-import fr.fms.music.entities.MusicalGenre;
+package fr.rory.music.repositories;
+import fr.rory.music.entities.MusicalGenre;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,8 +1,7 @@
-package fr.fms.music;
+package fr.rory.music;
 
-import fr.fms.music.entities.MusicalGenre;
-import fr.fms.music.repositories.AlbumRepository;
-import fr.fms.music.repositories.MusicalGenreRepository;
+import fr.rory.music.entities.MusicalGenre;
+import fr.rory.music.repositories.MusicalGenreRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;

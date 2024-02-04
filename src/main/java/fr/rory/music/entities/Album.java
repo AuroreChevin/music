@@ -1,4 +1,4 @@
-package fr.fms.music.entities;
+package fr.rory.music.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

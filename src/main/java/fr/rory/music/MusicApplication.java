@@ -1,30 +1,28 @@
-package fr.fms.music;
+package fr.rory.music;
 
-import fr.fms.music.business.IbusinessImpl;
-import fr.fms.music.entities.Album;
-import fr.fms.music.entities.BandName;
-import fr.fms.music.entities.MusicalGenre;
+import fr.rory.music.business.IbusinessImpl;
+import fr.rory.music.entities.Album;
+import fr.rory.music.entities.BandName;
+import fr.rory.music.entities.MusicalGenre;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 
 @SpringBootApplication
 public class MusicApplication implements CommandLineRunner {
-	/*@Autowired
-	IbusinessImpl business;*/
+	@Autowired
+	IbusinessImpl business;
 	public static void main(String[] args) {
 		SpringApplication.run(MusicApplication.class, args);
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
-	//generateData();
+		generateData();
 	}
 
-	/*private void generateData() {
+	private void generateData() {
 		MusicalGenre mathCore = business.saveMusicalGenre(new MusicalGenre(null,"Math Core", null));
 		MusicalGenre sludgeMetal = business.saveMusicalGenre(new MusicalGenre(null,"Sludge/Stoner Metal", null));
 		MusicalGenre trashMetal = business.saveMusicalGenre(new MusicalGenre(null,"Trash Metal", null));
@@ -95,5 +93,5 @@ public class MusicApplication implements CommandLineRunner {
 		business.saveAlbum(new Album(null,"Blood year", 2019, "blood year.png", postMetal, russianCircles));
 
 
-	}*/
+	}
 }

@@ -1,6 +1,6 @@
-package fr.fms.music.repositories;
+package fr.rory.music.repositories;
 
-import fr.fms.music.entities.Album;
+import fr.rory.music.entities.Album;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

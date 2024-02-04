@@ -1,10 +1,9 @@
-package fr.fms.music.business;
+package fr.rory.music.business;
 
-import fr.fms.music.entities.Album;
-import fr.fms.music.entities.BandName;
-import fr.fms.music.entities.MusicalGenre;
+import fr.rory.music.entities.Album;
+import fr.rory.music.entities.BandName;
+import fr.rory.music.entities.MusicalGenre;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,7 +19,7 @@ public interface Ibusiness {
 
     Album readAlbumById(Long id);
 
-    Optional readMusicalGenreById(Long id);
+    MusicalGenre readMusicalGenreById(Long id);
 
     List<Album> readAlbumByMusicalGenreId(Long id);
 

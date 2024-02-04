@@ -1,4 +1,4 @@
-package fr.fms.music.entities;
+package fr.rory.music.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
@@ -11,13 +11,18 @@ import java.io.Serializable;
 import java.util.Collection;
 
 @Entity
-@Data @NoArgsConstructor @AllArgsConstructor @ToString
-public class MusicalGenre implements Serializable {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+public class BandName implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    private String country;
     @OneToMany(fetch = FetchType.EAGER)
     @JsonIgnore
-    @JoinColumn(name = "musical_genre_id")
-    private Collection<Album> albums;
+    @JoinColumn(name = "band_name_id")
+    private Collection<Album> albumsCollection;
 }

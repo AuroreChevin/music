@@ -1,17 +1,18 @@
-package fr.fms.music.business;
+package fr.rory.music.business;
 
-import fr.fms.music.entities.Album;
-import fr.fms.music.entities.BandName;
-import fr.fms.music.entities.MusicalGenre;
-import fr.fms.music.repositories.AlbumRepository;
-import fr.fms.music.repositories.BandNameRepository;
-import fr.fms.music.repositories.MusicalGenreRepository;
+import fr.rory.music.entities.Album;
+import fr.rory.music.entities.BandName;
+import fr.rory.music.entities.MusicalGenre;
+import fr.rory.music.repositories.AlbumRepository;
+import fr.rory.music.repositories.BandNameRepository;
+import fr.rory.music.repositories.MusicalGenreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -52,12 +53,13 @@ public class IbusinessImpl implements Ibusiness{
     @Override
     public Album readAlbumById(Long id){
         Optional<Album> optional = albumRepository.findById(id);
-        return optional.isPresent() ? optional.get() : null;
+        return optional.orElse(null);
     }
 
     @Override
-    public Optional<MusicalGenre> readMusicalGenreById(Long id) {
-        return musicalGenreRepository.findById(id);
+    public MusicalGenre readMusicalGenreById(Long id) {
+        Optional<MusicalGenre> optional = musicalGenreRepository.findById(id);
+        return optional.orElse(null);
     }
 
     @Override
@@ -72,7 +74,12 @@ public class IbusinessImpl implements Ibusiness{
 
     @Override
     public List<Album> readAlbumByBandName(String keyword) {
-        return albumRepository.findByBandNameNameContains(keyword);
+        if(albumRepository.findByBandNameNameContains(keyword) == null) {
+            return new ArrayList<>();
+        }
+        else{
+            return albumRepository.findByBandNameNameContains(keyword);
+        }
     }
 
 }

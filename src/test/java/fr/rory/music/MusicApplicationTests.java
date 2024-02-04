@@ -1,4 +1,4 @@
-package fr.fms.music;
+package fr.rory.music;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

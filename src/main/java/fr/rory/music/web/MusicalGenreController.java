@@ -1,7 +1,7 @@
-package fr.fms.music.web;
+package fr.rory.music.web;
 
-import fr.fms.music.business.IbusinessImpl;
-import fr.fms.music.entities.MusicalGenre;
+import fr.rory.music.business.IbusinessImpl;
+import fr.rory.music.entities.MusicalGenre;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,13 +17,14 @@ import java.util.List;
 public class MusicalGenreController {
     @Autowired
     IbusinessImpl business;
-    @GetMapping("/musicalgenres")
+
+    @GetMapping(value = "/musical-genres")
     public ResponseEntity<List<MusicalGenre>> getAllMusicalGenres(){
         List<MusicalGenre> musicalGenres = business.getAllMusicalGenres();
-        return new ResponseEntity<List<MusicalGenre>>(musicalGenres,HttpStatus.OK);
+        return ResponseEntity.ok(musicalGenres);
     }
-    @GetMapping("/musicalgenres/{id}")
-    public MusicalGenre getMusicalGenreById(@PathVariable("id") Long id){
-        return business.readMusicalGenreById(id).get();
+    @GetMapping(value = "/musical-genres/{id}")
+    public ResponseEntity<MusicalGenre> getMusicalGenreById(@PathVariable("id") Long id){
+        return ResponseEntity.ok(business.readMusicalGenreById(id));
     }
 }
